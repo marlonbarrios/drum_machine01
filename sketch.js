@@ -167,7 +167,7 @@ function drawMatrix() {
 
 function touchStarted() {
   if (getAudioContext().state !== "running") {
-    get.AudioContext().resume();
+    getAudioContext().resume();
   }
 }
 
