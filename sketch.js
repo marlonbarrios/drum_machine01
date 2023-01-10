@@ -16,6 +16,13 @@ let bpFilter;
 let rev;
 let dist;
 
+let title;
+let description;
+let instructions1;
+let instructions2;
+let instructions3;
+let instructions4;
+
 
 
 
@@ -23,7 +30,7 @@ function setup() {
   beatLength = 16;
   cellWidth = width / beatLength;
    
-  cnv = createCanvas(400, 100);
+  cnv = createCanvas(windowWidth * 0.80, 200);
   cnv.mousePressed(canvasPressed);
 
 
@@ -88,14 +95,44 @@ function setup() {
 
 
 
-BPMcontrol = createSlider(30, 300, 60, 1).position(10, 130).size(200, 10);
+BPMcontrol = createSlider(30, 300, 60, 1)
+BPMcontrol.position(width * 0.20, height * 1.5);
+BPMcontrol.style('width', '400px');
+BPMcontrol.style('display', 'block');
+BPMcontrol.style('margin', 'auto');
+
+
+
+
+
+
+
+BPMcontrol.style('display', 'block');
+BPMcontrol.style('margin', 'auto');
+BPMcontrol.style('margin-top', '50px');
+BPMcontrol.style('margin-bottom', '20px');
+
+
+
+cnv.style('display', 'block');
+cnv.style('margin', 'auto');
+cnv.style('margin-top', '100px');
+cnv.style('margin-bottom', '20px');
+cnv.style('border', '3px solid black');
+
+
+
+
 BPMcontrol.input(() => {drums.setBPM(BPMcontrol.value())});
 drums.setBPM('60');
  
 drawMatrix();
-  
+drawCedits();
+
   
 }
+
+
 
 function keyPressed() {
   if (key ===' ') {
@@ -125,7 +162,8 @@ function canvasPressed() {
     snarePat[indexClicked] = +!snarePat[indexClicked];
   }
 
-  drawMatrix();
+drawMatrix();
+
 }
 
 function drawMatrix() {
@@ -133,6 +171,7 @@ function drawMatrix() {
   stroke('gray');
   strokeWeight(2)
   fill(255)
+
 
   for (let i = 0; i < beatLength +1; i++) {
 
@@ -160,11 +199,6 @@ function drawMatrix() {
 }
 }
 
-// function windowResized() {
-//   resizeCanvas(windowWidth, 100);
-//   setup();
-// }
-
 function touchStarted() {
   if (getAudioContext().state !== "running") {
     getAudioContext().resume();
@@ -180,8 +214,82 @@ drawPlayHead(beatIndex);
 }
 
 function drawPlayHead(beatIndex) {
-stroke('red');
+stroke(255);
 fill(255, 0, 0, 30);
 rect((beatIndex -1) * width / beatLength, 0, width / beatLength, height)
+fill(255)
+let BPM = BPMcontrol.value();
+textSize(20);
+textAlign(CENTER);
+textFont('monospace');
+text(BPM, (beatIndex- 0.5) * width / beatLength, 105);
+
+text(beatIndex, (beatIndex- 0.5) * width / beatLength, 160)
+
 }
+
+function drawCedits() {
+ title = createP('Drum Machine 01');
+  title.position(width * 0.20, 20);
+  title.style('font-size', '30px');
+  title.style('color', 'white');
+  title.style('text-align', 'center');
+  title.style('justify-text', 'center');
+  title.style('font-family', 'monospace');
+  title.style('font-weight', 'bold');
+  title.style('text-shadow', '2px 2px 4px #000000');
+  title.style('margin', '0px');
+
+  description = createP('A simple drum machine made with p5.js');
+  description.position(width * 0.20, 50);
+  description.style('font-size', '20px');
+  description.style('color', 'white');
+  description.style('text-align', 'center');
+  description.style('font-family', 'monospace');
+  description.style('font-weight', 'bold');
+  description.style('margin', '0px');
+
+  instructions1 = createP('Press space to play/stop');
+ 
+  instructions1.position(width * 0.20, 380);
+  instructions1.style('font-size', '20px');
+  instructions1.style('color', 'white');
+  instructions1.style('text-align', 'center');
+  instructions1.style('font-family', 'monospace');
+  instructions1.style('font-weight', 'bold');
+  instructions1.style('margin', '0px');
+
+  instructions2 = createP('Click on the matrix to change the pattern');
+  instructions2.position(width * 0.20, 410);
+  instructions2.style('font-size', '20px');
+  instructions2.style('color', 'white');
+  instructions2.style('text-align', 'center');
+  instructions2.style('font-family', 'monospace');
+  instructions2.style('font-weight', 'bold');
+  instructions2.style('margin', '0px');
+
+  instructions3 = createP('Drag the slider to change the BPM');
+  instructions3.position(width * 0.20, 440);
+  instructions3.style('font-size', '20px');
+  instructions3.style('color', 'white');
+  instructions3.style('text-align', 'center');
+  instructions3.style('font-family', 'monospace');
+  instructions3.style('font-weight', 'bold');
+  instructions3.style('margin', '0px');
+
+  instructions4 = createA('https://marlonbarrios.github.io/', 'Programmed by Marlon Barrios Solano', '_blank');
+  instructions4.position(width * 0.20, 470);
+  instructions4.style('font-size', '20px');
+  instructions4.style('color', 'white');
+  instructions4.style('text-align', 'center');
+  instructions4.style('font-family', 'monospace');
+  instructions4.style('margin', '0px');
+
+}
+
+
+
+// function windowResized() {
+// setup();
+// }
 
