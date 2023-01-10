@@ -246,7 +246,7 @@ function drawCedits() {
   title.style('text-shadow', '2px 2px 4px #000000');
   title.style('margin', '0px');
 
-  description = createP('A simple drum machine made with p5.js');
+  description = createP('A simple drum machine made with JaveScript');
   description.position(width * 0.20, 50);
   description.style('font-size', '20px');
   description.style('color', 'white');
