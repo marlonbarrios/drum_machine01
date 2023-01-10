@@ -119,6 +119,8 @@ cnv.style('margin', 'auto');
 cnv.style('margin-top', '100px');
 cnv.style('margin-bottom', '20px');
 cnv.style('border', '3px solid black');
+cnv.style('box-shadow', '1px 4px 4px #000000');
+cnv.style('border-radius', '15px');
 
 
 
@@ -133,7 +135,11 @@ drawCedits();
 }
 
 
-
+function windowResized() {
+  resizeCanvas(windowWidth * 0.80, 200);
+  drawMatrix();
+ 
+}
 function keyPressed() {
   if (key ===' ') {
    if (hh.isLoaded() && clap.isLoaded() && bass.isLoaded()) {
